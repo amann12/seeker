@@ -1,0 +1,113 @@
+﻿@model seeker.ViewModel.DeveloperViewModel
+@{
+    ViewData["Title"] = "AddDeveloper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+        font-size: 21px;
+    }
+</style>
+
+<body style="background: #eee;">
+<h1 align="center" style="text-decoration:underline">Be a Developer</h1>
+
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create"
+      method="post" class="mt-3">
+    <div class="form-group row last mb-4">
+        <label asp-for="devName" class="col-sm-2 col-form-label"> Developer Name</label>
+        <div class="col-sm-10">
+            <input asp-for="devName" class="form-control" placeholder="Developer Name">
+            <span asp-validation-for="devName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="devEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="devEmail" class="form-control" placeholder="Developer Email">
+            <span asp-validation-for="devEmail" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="devPhoneNumber" class="col-sm-2 col-form-label">Contact Number</label>
+        <div class="col-sm-10">
+            <input asp-for="devPhoneNumber" class="form-control" placeholder="Contact Number">
+            <span asp-validation-for="devPhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="devFrom" class="col-sm-2 col-form-label">Country</label>
+        <div class="col-sm-10">
+            <select asp-for="devFrom" class="custom-select mr-sm-2"
+                    asp-items="Html.GetEnumSelectList<country>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="devFrom" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="devAbout" class="col-sm-2 col-form-label">Your Skills</label>
+        <div class="col-sm-10">
+            <input asp-for="devAbout" class="form-control" placeholder="Your Skills">
+            <span asp-validation-for="devAbout" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="devProject" class="col-sm-2 col-form-label">Your Recent Projects</label>
+        <div class="col-sm-10">
+            <input asp-for="devProject" class="form-control" placeholder="Your Recent Projects">
+            <span asp-validation-for="devProject" class="text-danger"></span>
+        </div>
+    </div>  
+    <div class="form-group row">
+        <label asp-for="devGitHub" class="col-sm-2 col-form-label">GitHub Repository</label>
+        <div class="col-sm-10">
+            <input asp-for="devGitHub" class="form-control" placeholder="GitHub Repository">
+            <span asp-validation-for="devGitHub" class="text-danger"></span>
+        </div>
+    </div>
+  
+
+
+
+    <div class="form-group row">
+        <label asp-for="Photo" class="col-sm-2 col-form-label">Your Pic</label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input asp-for="Photo" class="form-control custom-file-input">
+                <label class="custom-file-label">Choose File...</label>
+            </div>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Create Profile</button>
+        </div>
+    </div>
+@*This script is required to display the selected file in the file upload element*@
+
+@section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+</form>
+</body>
+
+
+
+
+
+
+
